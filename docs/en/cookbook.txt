@@ -1,0 +1,24 @@
+How to write project specific documentation?
+
+Foomos documentation is a Text_Wiki. If you want to write documentation yourself check this page [http://wiki.horde.org/WickedTextFormat Text Wiki Docs Sample page].
+
+**The documentation is as close as possible to the developer - use it**
+
+**use UTF-8**
+
+++ Where to put the Documentation Text and related media
+|| modules/yourModule/docs/<language>.txt           || the index e.g. en.txt | de.txt  | ....txt               ||
+|| modules/yourModule/docs/<language>               || language folder, in this example english                ||
+|| modules/yourModule/docs/<language>/chapter.txt   || wiki text file                                          ||
+|| modules/yourModule/docs/<language>/medium.xyz    || medium linked in the wiki text - see the helpers below  ||
+
+++ Helpers by example
+
+* link to a file download [<?= $model->getWikiFileUrl('birdie.png', $offerAsDownload = true) ?> get the bird]
+
+* using a file as an image
+[[image <?= $model->getWikiFileUrl('birdie.png') ?> width="100" height="100" alt="a super sample birdie" title="birdie himself"]]
+
+<geshi type="php" file="<?= $model->getRelativeFile('sample.php') ?>">
+</geshi>
+
