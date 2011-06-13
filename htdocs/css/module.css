@@ -10,6 +10,10 @@
 
 }
 
+#docContents h1, #docContents h2, #docContents h3, #docContents h4, #docContents h5, #docContents h6 {
+	font-size: 150%;
+}
+
 #docContents .section, #docContents .chapter {
 		font-size:14px;
 }

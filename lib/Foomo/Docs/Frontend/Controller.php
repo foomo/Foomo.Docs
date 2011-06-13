@@ -13,10 +13,6 @@ class Controller {
 	 * @var Foomo\Docs\Frontend\Model
 	 */
 	public $model;
-	public function __construct()
-	{
-		\Foomo\HTMLDocument::getInstance()->addStylesheets(array(\Foomo\ROOT_HTTP . '/modules/docs/css/module.css'));
-	}
 	/**
 	 * if the module does not have any docs yet, the will be created
 	 *
