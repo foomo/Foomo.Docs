@@ -1,17 +1,73 @@
 <?php
 
+/*
+ * This file is part of the foomo Opensource Framework.
+ *
+ * The foomo Opensource Framework is free software: you can redistribute it
+ * and/or modify it under the terms of the GNU Lesser General Public License as
+ * published  by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * The foomo Opensource Framework is distributed in the hope that it will
+ * be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License along with
+ * the foomo Opensource Framework. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 namespace Foomo\Docs\Frontend;
 
 /**
  * renders documentations
  *
+ * @link www.foomo.org
+ * @license www.gnu.org/licenses/lgpl.txt
+ * @author jan <jan@bestbytes.de>
  */
-class Model {
+class Model
+{
+	//---------------------------------------------------------------------------------------------
+	// ~ Constants
+	//---------------------------------------------------------------------------------------------
+
+	const CODE_ERROR_INVALID_ROOT = 1;
+	const CODE_ERROR_INVALID_LANGUAGE = 2;
+
+	//---------------------------------------------------------------------------------------------
+	// ~ Static variables
+	//---------------------------------------------------------------------------------------------
+
+	/**
+	 * me for myself in a hacky, ugly and pragmetic dependency
+	 *
+	 * @internal
+	 * @var Foomo\Docs\Frontend\Model
+	 */
+	public static $_inst;
+
+	//---------------------------------------------------------------------------------------------
+	// ~ Variables
+	//---------------------------------------------------------------------------------------------
+
+	/**
+	 * @var string[]
+	 */
 	private $availableLangs;
+	/**
+	 * @var string
+	 */
 	private $docsRoot;
 	/**
+	 * currently rendered wiki file
+	 *
+	 * @var string
+	 */
+	private $currentWikiFile;
+	/**
 	 * current module
-	 * 
+	 *
 	 * @var string
 	 */
 	public $docsModule;
@@ -21,34 +77,36 @@ class Model {
 	 */
 	public $docsCreationSuccess;
 	/**
-	 * currently rendered wiki file
-	 * 
-	 * @var string
-	 */
-	private $currentWikiFile;
-	/**
 	 * error that occurred at creating docs
-	 * 
+	 *
 	 * @var string
 	 */
 	public $docsCreationError;
-	const CODE_ERROR_INVALID_ROOT = 1;
-	const CODE_ERROR_INVALID_LANGUAGE = 2;
+
+	//---------------------------------------------------------------------------------------------
+	// ~ Constructor
+	//---------------------------------------------------------------------------------------------
+
 	/**
-	 * me for myself in a hacky, ugly and pragmetic dependency
 	 *
-	 * @internal
-	 * @var Foomo\Docs\Frontend\Model
 	 */
-	public static $_inst;
 	public function __construct()
 	{
 		self::$_inst = $this;
 	}
+
+	//---------------------------------------------------------------------------------------------
+	// ~ Public methods
+	//---------------------------------------------------------------------------------------------
+
+	/**
+	 * @param string $file
+	 */
 	public function setCurrentWikiFile($file)
 	{
 		$this->currentWikiFile = $file;
 	}
+
 	/**
 	 * Get an Url for a file lying relative to a wiki file
 	 *
@@ -57,7 +115,7 @@ class Model {
 	 *
 	 * @return string the file url /r/modules/docs/wikiFile.php?f=...&d=...
 	 */
-	public function getWikiFileUrl($relativeFileName, $offerAsDownload = false, $width = null, $height = null)
+	public function getWikiFileUrl($relativeFileName, $offerAsDownload=false, $width=null, $height=null)
 	{
 		$fileName = realpath(dirname($this->currentWikiFile) . DIRECTORY_SEPARATOR . $relativeFileName);
 		if(!file_exists($fileName)) {
@@ -71,11 +129,18 @@ class Model {
 			return \Foomo\Utils::getServerUrl() . \Foomo\ROOT_HTTP . '/modules/' . \Foomo\Docs\Module::NAME . '/wikiFile.php?f=' . urlencode($fileName) . '&d=' . ($offerAsDownload?'true':'false');
 		}
 	}
+
+	/**
+	 *
+	 * @param string $relativeFileName
+	 * @return string
+	 */
 	public function getRelativeFile($relativeFileName)
 	{
 		$fileName = dirname($this->currentWikiFile) . DIRECTORY_SEPARATOR . $relativeFileName;
 		return file_exists($fileName)?realpath($fileName):'';
 	}
+
 	/**
 	 * set up a html docs renderer
 	 *
@@ -90,6 +155,8 @@ class Model {
 	}
 	/**
 	 * set the docs module
+	 *
+	 * @param string $moduleName
 	 */
 	public function setDocsModule($moduleName)
 	{
@@ -101,6 +168,7 @@ class Model {
 			}
 		}
 	}
+
 	/**
 	 * in which versions is the documentaion available
 	 *
@@ -121,25 +189,32 @@ class Model {
 		}
 		return $this->availableLangs;
 	}
+
 	/**
 	 * get the table of contents as html
 	 *
 	 * @param string $language language of the docs
 	 */
-	public function getToc($language = 'en')
+	public function getToc($language='en')
 	{
 		return $this->getRenderer($language)->renderToc();
 	}
+
 	/**
 	 * get the content as html
 	 *
 	 * @param string $language language of the docs
 	 */
-	public function getContents($language = 'en')
+	public function getContents($language='en')
 	{
 		$renderer = $this->getRenderer($language);
 		return $renderer->render();
 	}
+
+	//---------------------------------------------------------------------------------------------
+	// ~ Private methods
+	//---------------------------------------------------------------------------------------------
+
 	/**
 	 * get the renderer
 	 *

@@ -1,11 +1,37 @@
 <?php
 
+/*
+ * This file is part of the foomo Opensource Framework.
+ *
+ * The foomo Opensource Framework is free software: you can redistribute it
+ * and/or modify it under the terms of the GNU Lesser General Public License as
+ * published  by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * The foomo Opensource Framework is distributed in the hope that it will
+ * be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License along with
+ * the foomo Opensource Framework. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 namespace Foomo\Docs;
 
 /**
  * docs utils
+ *
+ * @link www.foomo.org
+ * @license www.gnu.org/licenses/lgpl.txt
+ * @author jan <jan@bestbytes.de>
  */
-class Utils {
+class Utils
+{
+	//---------------------------------------------------------------------------------------------
+	// ~ Public static methods
+	//---------------------------------------------------------------------------------------------
+
 	/**
 	 * create new docs
 	 *
@@ -49,6 +75,33 @@ class Utils {
 		self::writeIndexFile($docsFolder . DIRECTORY_SEPARATOR . $language . '.txt', $indexArray);
 		self::writeDefaultPages($docsLangFolder, $indexArray);
 	}
+
+	/**
+	 *
+	 * @param string $magicFileName
+	 * @param boolean $offerAsDownload
+	 */
+	public static function streamWikiFile($magicFileName, $offerAsDownload)
+	{
+		$parts = explode(DIRECTORY_SEPARATOR, $magicFileName);
+		$module = $parts[0];
+		unset($parts[0]);
+		$fileName = realpath(\Foomo\CORE_CONFIG_DIR_MODULES) . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . 'docs' . DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR, $parts);
+		if(realpath($fileName) == $fileName) {
+			if($offerAsDownload === true) {
+				\Foomo\Utils::streamFile($fileName, basename($fileName), null, true);
+			} else {
+				\Foomo\Utils::streamFile($fileName, null, null, false);
+			}
+		} else {
+			trigger_error('someone is trying to screw with us - incoming file name ' . $magicFileName, E_USER_ERROR);
+		}
+	}
+
+	//---------------------------------------------------------------------------------------------
+	// ~ Private static methods
+	//---------------------------------------------------------------------------------------------
+
 	/**
 	 * write the default documentaion pages in to the corresponding lang folder
 	 *
@@ -66,6 +119,7 @@ class Utils {
 			}
 		}
 	}
+
 	/**
 	 * generate the default index
 	 *
@@ -82,22 +136,6 @@ class Utils {
 			file_put_contents($file, $contents);
 		} else {
 			trigger_error('can not write the index file to ' . $file, E_USER_ERROR);
-		}
-	}
-	public static function streamWikiFile($magicFileName, $offerAsDownload)
-	{
-		$parts = explode(DIRECTORY_SEPARATOR, $magicFileName);
-		$module = $parts[0];
-		unset($parts[0]);
-		$fileName = realpath(\Foomo\CORE_CONFIG_DIR_MODULES) . DIRECTORY_SEPARATOR . $module . DIRECTORY_SEPARATOR . 'docs' . DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR, $parts);
-		if(realpath($fileName) == $fileName) {
-			if($offerAsDownload === true) {
-				\Foomo\Utils::streamFile($fileName, basename($fileName), null, true);
-			} else {
-				\Foomo\Utils::streamFile($fileName, null, null, false);
-			}
-		} else {
-			trigger_error('someone is trying to screw with us - incoming file name ' . $magicFileName, E_USER_ERROR);
 		}
 	}
 }
