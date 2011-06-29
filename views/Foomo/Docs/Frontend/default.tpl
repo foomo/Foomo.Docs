@@ -7,9 +7,9 @@ $undocumented = array();
 foreach($enabledModuleNames as $enabledModuleName) {
 	$modDocsFolder = \Foomo\CORE_CONFIG_DIR_MODULES . DIRECTORY_SEPARATOR . $enabledModuleName .  DIRECTORY_SEPARATOR . 'docs';
 	if(is_dir($modDocsFolder)) {
-		$documented[] =  '<li>'. $view->link($enabledModuleName, 'showModuleDocs', array($enabledModuleName), 'show docs for module' . $enabledModuleName) . '</li>';
+		$documented[] =  '<li>'. $view->link($enabledModuleName, 'showModuleDocs', array($enabledModuleName), array('title' => 'show docs for module' . $enabledModuleName)) . '</li>';
 	} else {
-		$undocumented[] =  '<li>' . $view->link($enabledModuleName, 'createModuleDocs', array($enabledModuleName), 'create docs for module' . $enabledModuleName) . '</a></li>';
+		$undocumented[] =  '<li>' . $view->link($enabledModuleName, 'createModuleDocs', array($enabledModuleName), array('title' => 'create docs for module' . $enabledModuleName)) . '</a></li>';
 	}
 }
 ?>
