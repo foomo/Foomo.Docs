@@ -74,7 +74,7 @@ namespace Foomo\Docs {
 		public static function getMenu()
 		{
 			return array(
-				\Foomo\Frontend\ToolboxConfig\MenuEntry::create('Root.Docs', 'Docs', self::NAME, 'Foomo\\Docs\\Frontend'),
+				\Foomo\Frontend\ToolboxConfig\MenuEntry::create('Root.Docs', 'Docs', self::NAME, 'Foomo.Docs'),
 			);
 		}
 	}
