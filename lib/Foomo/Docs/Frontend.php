@@ -26,4 +26,23 @@ namespace Foomo\Docs;
  */
 class Frontend extends \Foomo\MVC\AbstractApp implements \Foomo\Modules\ModuleAppInterface
 {
+	//---------------------------------------------------------------------------------------------
+	// ~ Variables
+	//---------------------------------------------------------------------------------------------
+
+	/**
+	 * @var Foomo\Docs\Frontend\Model
+	 */
+	public $model;
+
+	//---------------------------------------------------------------------------------------------
+	// ~ Constructor
+	//---------------------------------------------------------------------------------------------
+
+	public function __construct($moduleName=null)
+	{
+		parent::__construct(__CLASS__);
+
+		if (!is_null($moduleName)) $this->model->setDocsModule($moduleName);
+	}
 }

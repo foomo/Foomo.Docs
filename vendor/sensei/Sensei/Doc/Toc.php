@@ -40,7 +40,7 @@ class Sensei_Doc_Toc implements Countable
      */
     private $_toc;
 
-    
+
     /**
      * Constructs a new table of contents from a file
      *
@@ -55,12 +55,12 @@ class Sensei_Doc_Toc implements Countable
 
     /**
      * Finds the section that matches the given path.
-     * 
-     * The path consists of section names, where spaces are replaced by
-     * underscores, and which separated by '/' (default). 
      *
-     * @param string $path Path      
-     * @param string $separator A string that separates section names in path. 
+     * The path consists of section names, where spaces are replaced by
+     * underscores, and which separated by '/' (default).
+     *
+     * @param string $path Path
+     * @param string $separator A string that separates section names in path.
      * @return Sensei_Doc_Section|null A section that matches the given path, or
      * null if no matching section was found.
      */
@@ -68,11 +68,11 @@ class Sensei_Doc_Toc implements Countable
     {
         $sectionPaths = explode($separator, $path);
         $currentSection = $this->_toc;
-        
+
         foreach ($sectionPaths as $sectionPath) {
-            
+
             $found = false;
-            
+
             for ($i = 0; $i < $currentSection->count(); $i++) {
                 if ($currentSection->getChild($i)->getPath(true, $separator) === $sectionPath) {
                     $currentSection = $currentSection->getChild($i);
@@ -80,24 +80,24 @@ class Sensei_Doc_Toc implements Countable
                     break;
                 }
             }
-            
+
             if ( ! $found) {
                 return null;
             }
         }
-        
+
         return $currentSection;
     }
-    
+
     public function findByIndex($index, $separator = '.')
     {
         $indexes = explode($separator, $index);
         $currentSection = $this->_toc;
-        
+
         if (end($indexes) === '') {
             array_pop($indexes);
         }
-        
+
         foreach ($indexes as $i) {
             try {
                 $currentSection = $currentSection->getChild((int) $i - 1);
@@ -105,7 +105,7 @@ class Sensei_Doc_Toc implements Countable
                 return null;
             }
         }
-        
+
         return $currentSection;
     }
 

@@ -58,7 +58,7 @@ class Model
 	/**
 	 * @var string
 	 */
-	private $docsRoot;
+	public $docsRoot;
 	/**
 	 * currently rendered wiki file
 	 *
@@ -148,9 +148,7 @@ class Model
 	 */
 	public function setDocsRoot($docsRoot)
 	{
-		if(!is_dir($docsRoot)) {
-			throw new \InvalidArgumentException('invalid root folder', self::CODE_ERROR_INVALID_ROOT);
-		}
+		if (!is_dir($docsRoot)) throw new \InvalidArgumentException('invalid root folder', self::CODE_ERROR_INVALID_ROOT);
 		$this->docsRoot = $docsRoot;
 	}
 	/**
@@ -162,7 +160,7 @@ class Model
 	{
 		if(in_array($moduleName, \Foomo\Modules\Manager::getEnabledModules())) {
 			$modDocsFolder = \Foomo\CORE_CONFIG_DIR_MODULES . DIRECTORY_SEPARATOR . $moduleName . DIRECTORY_SEPARATOR . 'docs';
-			if(is_dir($modDocsFolder)) {
+			if (is_dir($modDocsFolder)) {
 				$this->setDocsRoot($modDocsFolder);
 				$this->docsModule = $moduleName;
 			}

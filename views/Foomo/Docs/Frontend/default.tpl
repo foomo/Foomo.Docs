@@ -1,4 +1,5 @@
 <?= $view->partial('header'); ?>
+<? if (is_null($model->docsRoot)): ?>
 <?php
 /* @var $view Foomo\MVC\View */
 $enabledModuleNames = Foomo\Modules\Manager::getEnabledModules();
@@ -26,3 +27,8 @@ foreach($enabledModuleNames as $enabledModuleName) {
 		<?= implode(PHP_EOL, $undocumented) ?>
 	</ul>
 <? endif; ?>
+<? else: ?>
+<?= $model->getContents(); ?>
+<? endif; ?>
+
+
