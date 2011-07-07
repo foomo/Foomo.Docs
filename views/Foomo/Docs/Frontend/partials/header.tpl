@@ -3,4 +3,4 @@
 	Foomo\ROOT_HTTP . '/modules/' . Foomo\Docs\Module::NAME . '/css/module.css'
  ));
 ?>
-<h1><?= $view->link(Foomo\Docs\Module::NAME) ?></h1>
+<!--<h1><?= $view->link(Foomo\Docs\Module::NAME) ?></h1>-->

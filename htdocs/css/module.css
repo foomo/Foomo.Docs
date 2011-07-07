@@ -1,122 +1,80 @@
-@CHARSET "UTF-8";
-#docContents {
-	max-width: 800px;
-}
-#docContents .section {
-	background-color:#efefef;
-	margin:10px;
-	margin-left:20px;
-	padding:5px;
 
+
+/* --- Global -------------------------------------------------------------------------------- */
+
+#docs .innerDocs {
+	clear: both;
+	margin: 10px;
 }
 
-#docContents h1, #docContents h2, #docContents h3, #docContents h4, #docContents h5, #docContents h6 {
-	font-size: 150%;
-}
-
-#docContents .section, #docContents .chapter {
-		font-size:14px;
-}
-
-#docContents .section h2 {
-	padding: 0;
-}
-
-/*a:visited a:hover a:active*/
-#docContents .chapter {
-	margin-bottom:30px;
-}
-
-#docContents .chapter a:link,
-#docContents .chapter a:hover,
-#docContents .chapter a:visited,
-#docContents .chapter a:active
-{
-        text-decoration:underline;
-}
-
-
-#docContents .chapter h1 a:link,
-#docContents .chapter h2 a:link,
-#docContents .chapter h3 a:link,
-#docContents .chapter h4 a:link,
-#docContents .chapter h5 a:link,
-#docContents .chapter h6 a:link,
-
-#docContents .chapter h1 a:hover,
-#docContents .chapter h2 a:hover,
-#docContents .chapter h3 a:hover,
-#docContents .chapter h4 a:hover,
-#docContents .chapter h5 a:hover,
-#docContents .chapter h6 a:hover,
-
-#docContents .chapter h1 a:visited,
-#docContents .chapter h2 a:visited,
-#docContents .chapter h3 a:visited,
-#docContents .chapter h4 a:visited,
-#docContents .chapter h5 a:visited,
-#docContents .chapter h6 a:visited,
-
-
-#docContents .chapter h1 a:active,
-#docContents .chapter h2 a:active,
-#docContents .chapter h3 a:active,
-#docContents .chapter h4 a:active,
-#docContents .chapter h5 a:active,
-#docContents .chapter h6 a:active
-{
-        text-decoration:none;
-	color:#3b503b;
-}
-
-#docContents .chapter a:active {
-	text-decoration:none;
-	color:#3b503b;
-}
-
-#docContents p {
-	color:#111111;
-}
-#docContents p a:link {
-	color: blue;
-        text-decoration:underline;
-}
-
-#docContents .chapter p a:visited {
-	color: #6666ff;
-    text-decoration:underline;
-}
-
-#docContents .chapter p a:active {
-	color: orange;
-	text-decoration:underline;
-}
-
-#docContents .chapter p a:hover {
-	color: red;
-	text-decoration:underline;
-}
-
-#docContents .chapter li {
-}
-
-#docContents .chapter pre {
-	border: grey dotted 1px;
-	padding:10px;
-	margin:10px 10px 10px 10px;
-	background-color:#f8f8f8;
-}
-#docContents table {
-	width: 100%;
-}
-#docContents table, #docContents td {
-	margin-top: 10px;
-	border:1px solid grey; 
-}
-.geshiCode pre {
+#docs .geshiCode pre {
 	overflow: auto;
 }
 
-.geshiCode, .geshiCode ol, .geshiCode li {
+#docs .geshiCode, #docs .geshiCode ol, #docs .geshiCode li {
 	white-space: nowrap;
 }
+
+
+
+
+
+
+/* --- Directory -------------------------------------------------------------------------------- */
+
+#docs #docDirectory {
+	position:relative;
+	clear: both;
+	margin: 10px 0;
+	width: 100%;
+	border: 1px solid #d7d7d7;
+	background: #ffffff;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+
+
+
+
+/* --- Contens -------------------------------------------------------------------------------- */
+
+#docs #docContents {
+	position:relative;
+	clear: both;
+	margin: 10px 0;
+	width: 100%;
+	border: 1px solid #d7d7d7;
+	background: #e8e8e8;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+#docs #docContents .section {
+	position:relative;
+	clear: both;
+	margin: 10px 0;
+	width: 98%;
+	padding: 1%;
+	border: 1px solid #d7d7d7;
+	background: #ffffff;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+#docs #docContents .chapter {
+	margin-bottom:30px;
+}
+
+#docs #docContents .chapter pre {
+	padding: 10px;
+	margin: 10px;
+	background: #f2f2f2;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
