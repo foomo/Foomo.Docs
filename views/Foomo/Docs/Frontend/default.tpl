@@ -36,8 +36,6 @@ foreach($enabledModuleNames as $enabledModuleName) {
 <? if(count($undocumented) > 0): ?>
 	<br>
 	<br>
-	<hr>
-	<br>	
 	<h2>Not documented modules</h2>
 	click to create a documentation skeleton<br>
 
