@@ -24,7 +24,7 @@ namespace Foomo\Docs;
  * @license www.gnu.org/licenses/lgpl.txt
  * @author jan <jan@bestbytes.de>
  */
-class Frontend extends \Foomo\MVC\AbstractApp implements \Foomo\Modules\ModuleAppInterface
+class Frontend extends \Foomo\MVC\AbstractApp
 {
 	//---------------------------------------------------------------------------------------------
 	// ~ Variables
