@@ -195,7 +195,21 @@ class Model
 	 */
 	public function getToc($language='en')
 	{
-		return $this->getRenderer($language)->renderToc();
+		return \Foomo\Cache\Proxy::call($this, 'cachedGetToc', array($language, $this->getAvailableLanguages(), $this->docsRoot));
+		//return self::cachedGetToc($language, $this->getAvailableLanguages(), $this->docsRoot);
+	}
+	/**
+	 * @Foomo\Cache\CacheResourceDescription
+	 * 
+	 * @param string $language
+	 * @param array $availableLanguages
+	 * @param string $docsRoot
+	 * 
+	 * @return string
+	 */
+	public function cachedGetToc($language, $availableLanguages, $docsRoot)
+	{
+		return self::getRenderer($language, $availableLanguages, $docsRoot)->renderToc();
 	}
 
 	/**
@@ -205,10 +219,22 @@ class Model
 	 */
 	public function getContents($language='en')
 	{
-		$renderer = $this->getRenderer($language);
-		return $renderer->render();
+		return \Foomo\Cache\Proxy::call($this, 'cachedGetContents', array($language, $this->getAvailableLanguages(), $this->docsRoot));		
+		//return self::cachedGetContents($language, $this->getAvailableLanguages(), $this->docsRoot);
 	}
-
+	/**
+	 * @Foomo\Cache\CacheResourceDescription
+	 * 
+	 * @param string $language
+	 * @param array $availableLanguages
+	 * @param string $docsRoot
+	 * 
+	 * @return string
+	 */
+	public function cachedGetContents($language, $availableLanguages, $docsRoot)
+	{
+		return self::getRenderer($language, $availableLanguages, $docsRoot)->render();
+	}
 	//---------------------------------------------------------------------------------------------
 	// ~ Private methods
 	//---------------------------------------------------------------------------------------------
@@ -219,10 +245,10 @@ class Model
 	 * @param string $language
 	 * @return Sensei_Doc_Renderer_Xhtml
 	 */
-	private function getRenderer($language)
+	private function getRenderer($language, $availableLanguages, $docsRoot)
 	{
-		if(in_array($language, $this->getAvailableLanguages())) {
-			$toc = new \Sensei_Doc_Toc($this->docsRoot . '/' . $language . '.txt');
+		if(in_array($language, $availableLanguages)) {
+			$toc = new \Sensei_Doc_Toc($docsRoot . '/' . $language . '.txt');
 			$renderer = new \Sensei_Doc_Renderer_Xhtml($toc);
 			return $renderer;
 		} else {

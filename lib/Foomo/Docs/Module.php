@@ -22,7 +22,7 @@ namespace Foomo\Docs {
 	use Foomo\Modules\ModuleBase;
 
 	/**
-	 * wiki for radact
+	 * wiki for foomo module self documentation
 	 *
 	 * @link www.foomo.org
 	 * @license www.gnu.org/licenses/lgpl.txt
