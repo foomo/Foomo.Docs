@@ -15,10 +15,16 @@
 	white-space: nowrap;
 }
 
-#docs ul, #docs ol  {
+#docs ul  {
 	padding: 0 0 0 25px;
 	list-style-type: disc;
 }
+
+#docs ol  {
+	padding: 0 0 0 25px;
+	list-style-type: decimal;
+}
+
 
 #docs li {
 	padding-left: 0 !important;

@@ -200,11 +200,11 @@ class Model
 	}
 	/**
 	 * @Foomo\Cache\CacheResourceDescription
-	 * 
+	 *
 	 * @param string $language
 	 * @param array $availableLanguages
 	 * @param string $docsRoot
-	 * 
+	 *
 	 * @return string
 	 */
 	public function cachedGetToc($language, $availableLanguages, $docsRoot)
@@ -219,16 +219,19 @@ class Model
 	 */
 	public function getContents($language='en')
 	{
-		return \Foomo\Cache\Proxy::call($this, 'cachedGetContents', array($language, $this->getAvailableLanguages(), $this->docsRoot));		
-		//return self::cachedGetContents($language, $this->getAvailableLanguages(), $this->docsRoot);
+		if (isset($_GET['nocache'])) {
+			return self::cachedGetContents($language, $this->getAvailableLanguages(), $this->docsRoot);
+		} else {
+			return \Foomo\Cache\Proxy::call($this, 'cachedGetContents', array($language, $this->getAvailableLanguages(), $this->docsRoot));
+		}
 	}
 	/**
 	 * @Foomo\Cache\CacheResourceDescription
-	 * 
+	 *
 	 * @param string $language
 	 * @param array $availableLanguages
 	 * @param string $docsRoot
-	 * 
+	 *
 	 * @return string
 	 */
 	public function cachedGetContents($language, $availableLanguages, $docsRoot)
