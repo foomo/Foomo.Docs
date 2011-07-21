@@ -21,4 +21,3 @@ Foomos documentation is a Text_Wiki. If you want to write documentation yourself
 
 <geshi type="php" file="<?= $model->getRelativeFile('sample.php') ?>">
 </geshi>
-
