@@ -1,6 +1,8 @@
 How to write project specific documentation?
 
-Foomos documentation is a Text_Wiki. If you want to write documentation yourself check this page [http://wiki.horde.org/WickedTextFormat Text Wiki Docs Sample page].
+Foomos documentation is a Text_Wiki. If you want to write documentation \
+yourself check this page [http://wiki.horde.org/Wiki/TextFormat Text Wiki Docs \
+Sample page].
 
 **The documentation is as close as possible to the developer - use it**
 
