@@ -9,11 +9,12 @@
 	<div class="toggleBox">
 		<div class="toogleButton">
 			<div class="toggleOpenIcon">+</div>
-			<div class="toggleOpenContent">Table of contents</div>
+			<div class="toggleOpenContent">
+				Table of contents
+			</div>
 		</div>
 		<div class="toggleContent">
 			<?= $model->getToc($lang); ?>
-
 		</div>
 	</div>
 
@@ -22,5 +23,12 @@
 		<?= $model->getContents($lang); ?>
 		</div>
 	</div>
+	
+	<a 
+		class="linkButtonSmallGrey" 
+		title="if you are writing this documentation, then this link is for you" 
+		href="<?= $view->url('showModuleDocs', array($model->docsModule, 'update')); ?>"
+	>update docs</a>	
+	
 </div>
-<? endforeach; ?>
+<? endforeach; ?>	
