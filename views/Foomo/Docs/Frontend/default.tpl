@@ -3,7 +3,7 @@
 <? if (is_null($model->docsRoot)): ?>
 
 
-	<?php
+	<?
 	/* @var $view Foomo\MVC\View */
 	$enabledModuleNames = Foomo\Modules\Manager::getEnabledModules();
 	$documented = array();
@@ -29,7 +29,12 @@
 		<h2>Documented modules</h2>
 
 		<?= implode(PHP_EOL, $documented) ?>
-
+		<a 
+			class="linkButtonSmallGrey" 
+			title="if you are writing this documentation, then this link is for you" 
+			href="<?= $view->url('updateAll'); ?>"
+		>update all docs</a>
+		
 
 	<? endif; ?>
 

@@ -84,6 +84,17 @@
 	margin-bottom:30px;
 }
 
+#docs #docContents .chapter p, #docs #docContents .chapter li {
+	font-size: 13px;
+	line-height: 1.3em;
+}
+
+#docs #docContents .chapter p {
+	padding-top: 15px;
+	padding-left: 20px;
+	padding-right: 100px;
+}
+
 #docs #docContents .chapter pre {
 	padding: 10px;
 	margin: 10px;

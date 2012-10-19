@@ -46,10 +46,17 @@ class Controller
 	/**
 	 *
 	 */
-	public function actionDefault()
-	{
+	public function actionDefault() { }
+	public function actionUpdateAll() 
+	{ 
+		\Foomo\Cache\Manager::invalidateWithQuery(
+			__NAMESPACE__ . '\\Model->cachedGetToc',
+			null,
+			true, 
+			\Foomo\Cache\Invalidator::POLICY_INSTANT_REBUILD
+		);
+		\Foomo\MVC::redirect('default');
 	}
-
 	/**
 	 * if the module does not have any docs yet, the will be created
 	 *
@@ -74,11 +81,21 @@ class Controller
 	 * show docs for a module
 	 *
 	 * @param string $module
-	 *
+	 * @param string $update rebuild the docs
+	 * 
 	 * @return string
 	 */
-	public function actionShowModuleDocs($moduleName='core')
+	public function actionShowModuleDocs($moduleName='core', $update = '')
 	{
+		if($update == 'update') {
+			\Foomo\Cache\Manager::invalidateWithQuery(
+				__NAMESPACE__ . '\\Model->cachedGetToc',
+				\Foomo\Cache\Persistence\Expr::propEq('docsRoot', \Foomo\Config::getModuleDir($moduleName) . DIRECTORY_SEPARATOR . 'docs'), 
+				true,
+				\Foomo\Cache\Invalidator::POLICY_INSTANT_REBUILD
+			);
+			// \Foomo\MVC::redirect('showModuleDocs', array($moduleName));
+		}
 		$this->model->setDocsModule($moduleName);
 	}
 }

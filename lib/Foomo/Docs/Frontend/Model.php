@@ -209,7 +209,11 @@ class Model
 	 */
 	public function cachedGetToc($language, $availableLanguages, $docsRoot)
 	{
-		return self::getRenderer($language, $availableLanguages, $docsRoot)->renderToc();
+		if(file_exists($docsRoot) && is_dir($docsRoot)) {
+			return self::getRenderer($language, $availableLanguages, $docsRoot)->renderToc();
+		} else {
+			return 'invalid docsroot';
+		}
 	}
 
 	/**
@@ -219,14 +223,10 @@ class Model
 	 */
 	public function getContents($language='en')
 	{
-		if (isset($_GET['nocache'])) {
-			return self::cachedGetContents($language, $this->getAvailableLanguages(), $this->docsRoot);
-		} else {
-			return \Foomo\Cache\Proxy::call($this, 'cachedGetContents', array($language, $this->getAvailableLanguages(), $this->docsRoot));
-		}
+		return \Foomo\Cache\Proxy::call($this, 'cachedGetContents', array($language, $this->getAvailableLanguages(), $this->docsRoot));
 	}
 	/**
-	 * @Foomo\Cache\CacheResourceDescription
+	 * @Foomo\Cache\CacheResourceDescription('dependencies'='Foomo\Docs\Frontend\Model->cachedGetToc')
 	 *
 	 * @param string $language
 	 * @param array $availableLanguages
@@ -236,7 +236,11 @@ class Model
 	 */
 	public function cachedGetContents($language, $availableLanguages, $docsRoot)
 	{
-		return self::getRenderer($language, $availableLanguages, $docsRoot)->render();
+		if(file_exists($docsRoot) && is_dir($docsRoot)) {
+			return self::getRenderer($language, $availableLanguages, $docsRoot)->render();
+		} else {
+			return 'invalid docsroot';
+		}
 	}
 	//---------------------------------------------------------------------------------------------
 	// ~ Private methods
