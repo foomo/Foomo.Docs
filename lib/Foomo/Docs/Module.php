@@ -43,10 +43,11 @@ namespace Foomo\Docs {
 		public static function initializeModule()
 		{
 			// include my vendor sensei
+			$vendorDir = self::getVendorDir();
 			\Foomo\Utils::addIncludePaths(array(
-					\Foomo\CORE_CONFIG_DIR_MODULES . DIRECTORY_SEPARATOR . self::NAME . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'sensei',
-					\Foomo\CORE_CONFIG_DIR_MODULES . DIRECTORY_SEPARATOR . self::NAME . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'geshi',
-					\Foomo\CORE_CONFIG_DIR_MODULES . DIRECTORY_SEPARATOR . self::NAME . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'wiki'
+					$vendorDir . DIRECTORY_SEPARATOR . 'sensei',
+					$vendorDir . DIRECTORY_SEPARATOR . 'geshi',
+					$vendorDir . DIRECTORY_SEPARATOR . 'wiki'
 			));
 		}
 
