@@ -30,6 +30,7 @@ namespace Foomo\Docs {
 	 */
 	class Module extends \Foomo\Modules\ModuleBase implements \Foomo\Frontend\ToolboxInterface
 	{
+		const VERSION = '0.3.0';
 		//---------------------------------------------------------------------------------------------
 		// ~ Constants
 		//---------------------------------------------------------------------------------------------
@@ -59,7 +60,7 @@ namespace Foomo\Docs {
 		public static function getResources()
 		{
 			return array(
-				\Foomo\Modules\Resource\Module::getResource('Foomo', '0.1'),
+				\Foomo\Modules\Resource\Module::getResource('Foomo', '0.2.*'),
 				\Foomo\Modules\Resource\PearPackage::getResource('Text_Wiki')
 			);
 		}
