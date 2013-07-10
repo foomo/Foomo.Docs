@@ -1,8 +1,10 @@
 {
-    "name": "foomo/docs",
-    "require": [
+    "name": "foomo\/docs",
+    "require": {
 
-    ],
+    },
+    "license": "proprietary",
+    "description": "a wiki for (self) documentation purposes",
     "version": "0.3.0",
     "target-dir": "composerModulesTest"
 }
