@@ -1,9 +1,13 @@
 {
     "name": "foomo\/docs",
+    "type": "foomo-module",
     "require": {
 
     },
-    "license": "proprietary",
+    "license": "LGPL-3.0+",
     "description": "a wiki for (self) documentation purposes",
-    "target-dir": "\/composerModulesTest\/Foomo.Docs"
+    "extra": {
+        "moduleName": "Foomo.Docs"
+    },
+    "target-dir": "Foomo.Docs"
 }
